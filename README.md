@@ -35,9 +35,10 @@ From inside that directory you can:
     ```
 
 2. (OPTIONAL) **Add `pyenv virtualenv-init` to your shell** to enable auto-activation of virtualenvs. This is entirely optional but pretty useful. See "Activate virtualenv" below.
-
+    
     ```sh
-    $ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bash_profile
+    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile"
+    echo -e 'if command -v pyenv virtualenv-init 1>/dev/null 2>&1; then\n  eval "$(pyenv virtualenv-init -)"\nfi'  >> ~/.bash_profile"
     ```
 
     **Fish shell note**:  Add this to your `~/.config/fish/config.fish`
@@ -78,10 +79,10 @@ Or, if you would like to install the latest development release:
 $ brew install --HEAD pyenv-virtualenv
 ```
 
-After installation, you'll still need to add 
+After installation, you can add shims to enable shims and autocompletion.  
 ```sh
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile"
+echo -e 'if command -v pyenv virtualenv-init 1>/dev/null 2>&1; then\n  eval "$(pyenv virtualenv-init -)"\nfi'  >> ~/.bash_profile"
 ```
 to your profile (as stated in the caveats). You'll only ever have to do this once.
 
